@@ -12,7 +12,7 @@ likes(["Alex", "Jacob", "Mark", "Max"]) # must be "Alex, Jacob and 2 others like
 """
 
 def likes(names):
-    s = "like this";
+    s = "like this"
     if len(names) == 0:
         s = "no one likes this"
     elif len(names) == 1:
