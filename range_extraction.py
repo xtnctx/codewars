@@ -1,0 +1,33 @@
+"""
+A format for expressing an ordered list of integers is to use a comma separated list of either
+
+individual integers or a range of integers denoted by the starting integer separated from the end integer in the range by a dash, '-'. 
+The range includes all integers in the interval including both endpoints. 
+It is not considered a range unless it spans at least 3 numbers. For example "12,13,15-17"
+Complete the solution so that it takes a list of integers in increasing order and returns a correctly formatted string in the range format.
+
+Example:
+    solution([-10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20])
+    # returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
+
+Courtesy of rosettacode.org
+"""
+
+
+def solution(args):
+    output = []
+    range_seq = []
+
+    head, *tail = args
+    range_seq.append(head)
+
+    for n in tail+[None]:
+        if n != range_seq[-1] + 1:
+            if len(range_seq) > 2:
+                output.append(f'{range_seq[0]}-{range_seq[-1]}')
+            else:
+                output += [str(r) for r in range_seq]
+            range_seq = [n]
+        else:
+            range_seq.append(n)
+    return ','.join(output)
